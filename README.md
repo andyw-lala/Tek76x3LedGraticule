@@ -1,63 +1,47 @@
 ![After Photo](images/After.jpg)
-# Tek7904ALedGraticule
-A project to retro-fit LED graticule lighting to Tektronix 7904A scopes.
+# Tek76x3LedGraticule
+A project to retro-fit LED graticule lighting to Tektronix 76x3 scopes.
 
-Inspired by the white LED upgrade to a [Tek 7854 by Zenwizard Studios](https://youtu.be/GYkjuE7Pez8).
+After retrofitting [LED graticule lighting in my 7904A](https://github.com/andyw-lala/Tek7904ALedGraticule) (which was in turn inspired by the white LED upgrade to a [Tek 7854 by Zenwizard Studios](https://youtu.be/GYkjuE7Pez8)), I decided to upgrade the graticule lights on my 7603 and 7633 scopes.
 
-The 7904A is not so so straightforward that you can simply replace the lamps with LEDs and a series resistor.
+Attempts to take the simple route of just replacing the lamps with LEDs, as per [another excellent Zenwizard video](https://youtu.be/xNx9IgudV4Y) resulted in burnt out LEDs - eventually I added a dropping resistor, but was unhappy with the result. I was not happy with the adjustment range, so I kept digging.
+The control circuitry in the 76x3 scopes will current limit, so I initially investigated adjusting the current limit sensing circuitry to limit the max current to a safe level for the LEDs, but that resulted in even worst adjustment range.
 
-This design replaces the existing incandescent graticule lamp driver circuit with a variable current source, all the existing controls are honoured, including intensity, gate and manual modes.
-
-This upgrade is also featured at the beginning of Zenwizard Studios video: [Tektronix 7904A Lab Check in and LED MOD](https://youtu.be/GQn0EqW-u74).
+Like the 7904A retrofit, this design replaces the existing incandescent graticule lamp driver circuit with a variable current source, while honoring the existing control mechanism.
 
 ## Theory of Operation
-The 7904A controls the graticule illumination by means of circuitry on the A1 PCB (front panel board, located upper right front of scope.) This control circuit is documented on schematic 7 of my version of the manual (R1900, R1902, Q1910, S1905, S1910, etc.) Ultimately these various mechanisms result in a single -15V to 0V output signal on pin 4 of P1917; where -15V is illumination off, and 0V is full brighness.
+The 76x3 mainframes control the graticule illumination by means of a front panel variable resistor, and circuitry on the rectifier PCB (A11) at the rear of the unit.
 
-This signal is then whisked off to the A22 PCB (LV Regulator board, located towards the rear.) The control signal is used by Q144, Q148 and associated components (schematic 15 in my version of the manual) to control a 0v to 6V output that is fed to the lamps via the A1 PCB again and a beefy pull-up resistor to +15V (R301.) The original lamps are wired in parallel, as shown on schematic 2.
+The variable resistor (R1095) provides a voltage between -15V (graticule off) and +5V (graticule max). This voltage is applied to Q829, Q835, & Q827 and associated passives to provide a current limited variable voltage to three incandescent lamps that are wired in parallel. A single 4-way ribbon cable carries +15V, -15V, the control signal from R1095 and the output to the graticule light assembly. This cable mates with P891 on the rectifier board.
 
-The replacement re-uses all the control circuitry, so behaviour is identical, including all the modes and controls such as preset brightness, gated, and manual operation. However, it uses the -15V to 0V control voltage to control a 0 - 20mA current from the +15V rail through the replacement LEDs, which are wired in series. The circuit uses a simple emitter follower (T1) to convert the control voltage into a current sink, and a [Wilson current mirror](https://en.wikipedia.org/wiki/Wilson_current_mirror) (T2,3,4) to convert that into a current source to ground for the LEDs. It seemed apt, since George Wilson was a Tek engineer when he developed the eponymous circuit. The absolute accuracy of the mirror is not too important; so unmatched, discrete, transistors are used.
+In a similar manner to the 7904A retrofit, the replacement circuit uses the same control signal (-15 to +5 volts) to control an approximately 0 - 20 mA current to ground that is used to drive the LEDs, which are wired in series.
 
-This is accomplished by inserting a small circuit with the additional electronics in the existing ribbon cable connection between the A1 and A22 boards. The control signal to, and the lamp power from, A22 are disconnected and no longer passed through. The pull-up resistor (R301 on A1) is removed.
+This does require a more intrusive rework of the graticule light assembly (A13).
 
-The graticule light board (A30) is modified to replace the lamps with wide angle white LEDs,and to wire them in series.
+The -15 to +5V control voltage from R1095 drives the base of T1, resulting in a 0 - 4 mA T1 collector current. In order drive a current to ground in order to preserve the wiring of the craticule assembly, this 0 - 4 mA control current is mirrored via T2, T3, & T4 acting as a [Wilson current mirror](https://en.wikipedia.org/wiki/Wilson_current_mirror), however due to the differing values of R3 & R4, the resultant current between the collector of T4 and ground varies between 0 and approximately 20 mA. Once again, the exact fidelity of the current mirror is not important, so discrete, unmatched transistors are used.
 
-## [Schematic](V3.pdf) (pdf)
+Since all the required signals a present on the ribbon cable that normally connects to P891 on the rectifier board, a small PCB was designed to accept the ribbon cable instead. Installation comprises of removing the ribbon connection to P891 (which can be done without removing the power supply assembly from the case.)
+
+The graticule light board (A13) is modified to replace the lamps with wide angle white LEDs,and to wire them in series.
+
+## [Schematic](V1.pdf) (pdf)
 
 ## [BOM](BOM.md)
 
 ## Eagle Files
-* [Schematic](V3.sch)
-* [Board](V3.brd)
+* [Schematic](V1.sch)
+* [Board](V1.brd)
 
 ## Gerber Files
 Here are generated gerbers, so you can use your PCB house of choice.
 Note that I have only checked these with a viewer, I ordered my boards direct from OSHPark using the eagle board file. Send feedback if you use these files and they work or don't work.
-* [Gerber zipfile](V3_gerbers.zip)
+* [Gerber zipfile](V1_gerbers.zip)
 
 ## Order Boards
-You can order multiples of three known good boards directly from [OSHpark](https://oshpark.com/shared_projects/jouvs37V)
+You can order multiples of three known good boards directly from OSHpark (TODO)
 
 ## Installation
-There are four simple steps required in addition to making the circuit board (all obviously accomplished with the scope off, and fully discharged):
-1. Reworking the graticule light board (A30.)
-First remove the graticule lamp assembly from the scope, this is accomplished as follows:
-    1. [Remove the plastic trim around the CRT](images/PXL_20220108_233952439.jpg), by gently pulling it away from the screen.
-    2. [Loosen the two screws holding the retaining clips](images/PXL_20220108_234001968.jpg) for the tinted filter, and rotate the clips out of the way.
-    3. Remove the tinted filter.
-    4. [Remove the graticule light assembly](images/PXL_20220108_234047702.jpg) by gently pushing the white plastic clips inwards until [the assembly can be pulled forward](images/PXL_20220108_234137003.jpg). Be gentle, these clips can be brittle.
-    5. Desolder the two wires that go to the PCB, taking note of which wire goes where in the PCB - in my case the green wire went to the trace marked "Ground", and the yellow wire went to the trace marked "+". Tape the wires to avoid them disappearing back inside the body of the scope and complicating the process.
-    6. [Remove the PCB](images/PXL_20210615_022417282.jpg) from the clear plastic light guide.
-    7. [Desolder lamps](images/PXL_20210615_022752127.jpg).
-    8. [Pre-bend the LED leads](images/PXL_20210615_023820695.jpg).
-    9. [Solder LEDs in place](images/PXL_20210615_024128291.jpg) - noting orientation.
-    10. [Cut PCB traces](images/PXL_20210615_024433127.jpg) in three places, to convert from parallel to series wiring.
-    11. [Add jumper wire as shown](images/PXL_20210615_024639665.jpg) to complete series wiring.
-    12. Re-solder A30 PCB to wires on scope, observing the correct polarity.
-    12. Re-assemble by reversing steps i - vi.
-2. Remove [R301](images/R301-Location-1.jpg), the [300 Ohm, 1W resistor](images/R301-Location-2.jpg) on the A1 board. I did not bother desoldering it, and simply removed it by cutting the leads.
-3. Mount the additional PCB. I bolted it to the horizontal rail running along the right hand side of the chassis, using one of the existing holes near the rear of the scope.
-4. Remove the ribbon cable that is plugged into P17 on the Low Voltage Regulator board (A22), and [attach it to the additional PCB](images/PXL_20210720_014014225.jpg) in the location marked "To A1 P1917", paying attention to the orientation of pin 1. This is P1 on the schematic. Connect the location marked "To A22 P17" on the additional PCB (P2 on schematic) via additional ribbon cable to the now unused P17 on A22.
-I was able to find a 5-way Tek cable that I pulled from some parts mule, and I used that to make the connection between A22 and the additional PCB. Obviously, other solutions are possible, such as cutting the existing ribbon cable and soldering it directly to the additional PCB.
+TODO
 
 # Licence
 All work here is covered by the MIT Licence, which is simple and permissive.
