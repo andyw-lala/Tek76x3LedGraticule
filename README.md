@@ -5,7 +5,7 @@ A project to retro-fit LED graticule lighting to Tektronix 76x3 scopes.
 After retrofitting [LED graticule lighting in my 7904A](https://github.com/andyw-lala/Tek7904ALedGraticule) (which was in turn inspired by the white LED upgrade to a [Tek 7854 by Zenwizard Studios](https://youtu.be/GYkjuE7Pez8)), I decided to upgrade the graticule lights on my 7603 and 7633 scopes.
 
 Attempts to take the simple route of just replacing the lamps with LEDs, as per [another excellent Zenwizard video](https://youtu.be/xNx9IgudV4Y) resulted in burnt out LEDs - eventually I added a dropping resistor, but was unhappy with the result - specifically the adjustment range, so I kept digging.
-The control circuitry in the 76x3 scopes will current limit, so I initially investigated adjusting the current limit sensing circuitry to limit the max current to a safe level for the LEDs, but that resulted in even less useful adjustment range from the front panel control.
+The control circuitry in the 76x3 scopes will current limit, so I initially investigated adjusting the current limit sense circuitry to limit the max current to a safe level for the LEDs, but that resulted in even less useful adjustment range from the front panel control.
 
 Like the 7904A retrofit, this design completely replaces the existing incandescent graticule lamp driver circuit with a variable current source, while honoring the existing control mechanism.
 
