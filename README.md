@@ -38,7 +38,7 @@ Note that I have only checked these with a viewer, I ordered my boards direct fr
 * [Gerber zipfile](V1_gerbers.zip)
 
 ## Order Boards
-You can order multiples of three known good boards directly from OSHpark (TODO)
+You can order multiples of three known good boards directly from [OSHpark](https://oshpark.com/shared_projects/Er36gqKW).
 
 ## Installation
 TODO
