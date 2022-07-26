@@ -4,19 +4,15 @@ A project to retro-fit LED graticule lighting to Tektronix 76x3 scopes.
 
 After retrofitting [LED graticule lighting in my 7904A](https://github.com/andyw-lala/Tek7904ALedGraticule) (which was in turn inspired by the white LED upgrade to a [Tek 7854 by Zenwizard Studios](https://youtu.be/GYkjuE7Pez8)), I decided to upgrade the graticule lights on my 7603 and 7633 scopes.
 
-Attempts to take the simple route of just replacing the lamps with LEDs, as per [another excellent Zenwizard video](https://youtu.be/xNx9IgudV4Y) resulted in burnt out LEDs - eventually I added a dropping resistor, but was unhappy with the result. I was not happy with the adjustment range, so I kept digging.
-The control circuitry in the 76x3 scopes will current limit, so I initially investigated adjusting the current limit sensing circuitry to limit the max current to a safe level for the LEDs, but that resulted in even worst adjustment range.
+Attempts to take the simple route of just replacing the lamps with LEDs, as per [another excellent Zenwizard video](https://youtu.be/xNx9IgudV4Y) resulted in burnt out LEDs - eventually I added a dropping resistor, but was unhappy with the result - specifically the adjustment range, so I kept digging.
+The control circuitry in the 76x3 scopes will current limit, so I initially investigated adjusting the current limit sensing circuitry to limit the max current to a safe level for the LEDs, but that resulted in even less useful adjustment range from the front panel control.
 
-Like the 7904A retrofit, this design replaces the existing incandescent graticule lamp driver circuit with a variable current source, while honoring the existing control mechanism.
+Like the 7904A retrofit, this design completely replaces the existing incandescent graticule lamp driver circuit with a variable current source, while honoring the existing control mechanism.
 
 ## Theory of Operation
-The 76x3 mainframes control the graticule illumination by means of a front panel variable resistor, and circuitry on the rectifier PCB (A11) at the rear of the unit.
+The 76x3 mainframes control the graticule illumination by means of a front panel variable resistor (R1095) and circuitry on the rectifier PCB (A11) at the rear of the unit. R1095 provides a voltage between -15V (graticule off) and +5V (graticule max). This voltage is applied to Q829, Q835, & Q827 and associated passives to provide a current limited variable voltage to three incandescent lamps that are wired in parallel. A single 4-way ribbon cable carries +15V, -15V, the control signal from R1095 and the output to the graticule light assembly. This cable mates with P891 on the rectifier board where the control circuit resides.
 
-The variable resistor (R1095) provides a voltage between -15V (graticule off) and +5V (graticule max). This voltage is applied to Q829, Q835, & Q827 and associated passives to provide a current limited variable voltage to three incandescent lamps that are wired in parallel. A single 4-way ribbon cable carries +15V, -15V, the control signal from R1095 and the output to the graticule light assembly. This cable mates with P891 on the rectifier board.
-
-In a similar manner to the 7904A retrofit, the replacement circuit uses the same control signal (-15 to +5 volts) to control an approximately 0 - 20 mA current to ground that is used to drive the LEDs, which are wired in series.
-
-This does require a more intrusive rework of the graticule light assembly (A13).
+In a similar manner to the 7904A retrofit, the replacement circuit uses the same control signal (-15 to +5 volts) to control an approximately 0 - 20 mA current to ground that is used to drive the LEDs, which are re-wired to be in series.
 
 The -15 to +5V control voltage from R1095 drives the base of T1, resulting in a 0 - 4 mA T1 collector current. In order drive a current to ground in order to preserve the wiring of the craticule assembly, this 0 - 4 mA control current is mirrored via T2, T3, & T4 acting as a [Wilson current mirror](https://en.wikipedia.org/wiki/Wilson_current_mirror), however due to the differing values of R3 & R4, the resultant current between the collector of T4 and ground varies between 0 and approximately 20 mA. Once again, the exact fidelity of the current mirror is not important, so discrete, unmatched transistors are used.
 
