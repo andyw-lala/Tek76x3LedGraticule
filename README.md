@@ -10,10 +10,12 @@ The control circuitry in the 76x3 scopes will current limit, so I initially inve
 Like the 7904A retrofit, this design completely replaces the existing incandescent graticule lamp driver circuit with a variable current source, while honoring the existing control mechanism.
 
 ## Theory of Operation
+![Original Circuit](images/7603-graticule-orig.png)
 The 76x3 mainframes control the graticule illumination by means of a front panel variable resistor (R1095) and circuitry on the rectifier PCB (A11) at the rear of the unit. R1095 provides a voltage between -15V (graticule off) and +5V (graticule max). This voltage is applied to Q829, Q835, & Q827 and associated passives to provide a current limited variable voltage to three incandescent lamps that are wired in parallel. A single 4-way ribbon cable carries +15V, -15V, the control signal from R1095 and the output to the graticule lamp assembly (A13.) This cable mates with P891 on the rectifier board where the control circuit resides.
 
 In a similar manner to the 7904A retrofit, the replacement circuit uses the same control signal (-15 to +5 volts) to control an approximately 0 - 20 mA current to ground that is used to drive the LEDs, which are re-wired to be in series.
 
+![New Circuit](images/V1.png)
 The -15 to +5V control voltage from R1095 drives the base of T1, resulting in a 0 - 4 mA T1 collector current. In order drive a current to ground and preserve the nature of the graticule lamp assembly connections, this 0 - 4 mA control current is mirrored by T2, T3, & T4 acting as a [Wilson current mirror](https://en.wikipedia.org/wiki/Wilson_current_mirror), however due to the differing values of R3 & R4, the resultant current between the collector of T4 and ground varies between 0 and approximately 20 mA. As in the 7904A retrofit design, the exact fidelity of the current mirror is not important, so discrete, unmatched transistors are used.
 
 Since all the required signals a present on the ribbon cable that normally connects to P891 on the rectifier board, a small PCB was designed to accept the ribbon cable instead. Installation comprises of removing the ribbon connection to P891 (which can be done without removing the power supply assembly from the case.)
