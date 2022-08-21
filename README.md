@@ -41,7 +41,60 @@ Note that I have only checked these with a viewer, I ordered my boards direct fr
 You can order multiples of three known good boards directly from [OSHpark](https://oshpark.com/shared_projects/Er36gqKW).
 
 ## Installation
-TODO
+After assembling the board, installation consists of the following steps:
+* Disconnection of P891 4-pin connector from rectifier board, and re-routing of 4-conductor ribbon cable.
+* Removal, rework, and re-installation of graticule lamp assembly.
+* Mounting of new PCB in a suitable location.
+* Connection of P891 4-pin connector to new PCB.
+### Disconnection of P891 from rectifier board
+It is possible to unplug the 4-pin ribbon cable that plugs into P891 on the rectifier board without removal of the rectifier board and transformer assembly. With the power off, everything discharged, and the left cover removed; it is possible to work a narrow screwdriver or other tool in from the left hand side to work the connector loose while gently pulling on the ribbon cable. Once the connector is free of the rectifier board, gently untangle it from all the other ribbon and coax cables in the vicinity, to gain the maximum working length. Take care not to orce other cables into the path of the fan which is nearby.
+### Removal of existing graticule lamp assembly
+On the 7603, the graticule lamp assembly is mounted vertically to the left of the CRT. Remove the two knurled screws to the left of the CRT, and gently remove the front bezel and implosion shield. There should be a white diffuser (as shown in [Zen's youtube video](https://youtu.be/xNx9IgudV4Y?t=40). Remove this and the spring that holds it in place. Remove the two mounting screws that hold the assembly in place, and work the existing lamp assembly free. You can either rework the assembly in place, or remove it from the scope by unplugging the 2 pin connector from the calibrator board.
+### Reworking the graticule lamp assembly
+Remove the lamps, and cut or desolder the wires that connect the 3 lamp sockets.
+At this point you can trim the existing lamp sockets back so that they will not touch the chassis, if you wish (more on this later.) I found passing the LED positive leg (the long lead in the specified parts) through the hole in the center connector of the socket, soldering it in place and soldering the negative leg to the outside connector of the lamp socket worked well. Wire the sockets in series.
+
+![rewired lamp assy](images/IMG_0583.jpg)
+
+Note that the outside conductor of the lamp sockets will be grounded by contact with the chassis when the assembly is remounted, this will cause one or more LEDs not to light, no damage will occur as the current is limited to ~20mA, but the lighting is uneven and very poor. This is why I suggest trimming the metal of the lamp sockets back, but for my first 7603 rework, I used kapton tape to insulate the lamp sockets.
+
+![kapton tape](images/IMG_0584.jpg)
+
+### Reinstallation of graticule lamp assembly
+The graticule lamp assembly is installed by reversing the steps for removal. Note that depending on how far the LEDs protrude through the cahssis, the registration of the diffuser may not be quite as positive, but it has not been a problem in my experience.
+
+Fell free to test at this point, if you are experienced enough to operate the scope with the side cover removed. Simply plug the PCB into the ribbon cable while ensuring that the PCB is not touching any parts of the scope.
+
+![test setup](images/IMG_0585.jpg)
+
+If none of the LEDs light, try reversing the 2-pin connector between the graticule lamp assembly and the calibrator board.
+
+If one or more, but not all, of the LEDs light, then you have a short to chassis in the lamp assembly.
+
+You should be able to vary the LED brightness using the normal front panel control and the diffuser should spread the light fairly evenly across the face of the CRT.
+
+### Mounting new PCB in a suitable location
+You are free to mount the PCB wherever you can find a suitable stable mechanical mounting point that the ribbon cable will reach. I ended up carefully drilling a suitable hole for a machine screw in the side wall of the transformer/rectifier assembly. I was careful to remove all swarf immediately after drilling the hole with a vacuum and a brush. After struggling to hold a nut in place with the board in place, I resorted to installing a threaded bushing on the PCB.
+
+![bushing 1](images/IMG_0587.jpg)
+
+![bushing 2](images/IMG_0586.jpg)
+
+![mounted PCB](images/IMG_0588.jpg)
+
+I recommend mounting the PCB so that if the mounting bolt works loose and the board rotates, it is unable to rotate far enough to short pins to the chassis.
+
+I also applied some additional kaptan tape to the inside of the side cover, to reduce the chance of shorts if the side cover was pressed at just the wrong place.
+
+![side cover kapton](images/IMG_0589.jpg)
+
+The mounting location for the PCB is completely non-critical, as long as it is safe, mechanically sound, and the ribbon cable can reach. Feel free to devise your own arrangement (pull requests with alternate ideas welcome.)
+
+### Connection of P891 4-pin connector to new PCB
+When connecting the 4-pin connector that used to go to the rectifier board, play close attention to the orientation. Pin 1 is clearly marked on the PCB, line the arrow on the connector up with the pin that the arrow on the PCB points to.
+
+### Final testing
+Close up the case, ensure all cables are dressed well, and none are in the way of the fan, and perform a final test after the covers are all buttoned up.
 
 # Licence
 All work here is covered by the MIT Licence, which is simple and permissive.
