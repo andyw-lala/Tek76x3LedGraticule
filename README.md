@@ -61,20 +61,20 @@ Note that the outside conductor of the lamp sockets will be grounded by contact 
 ![kapton tape](images/IMG_0584.jpg)
 
 ### Reinstallation of graticule lamp assembly
-The graticule lamp assembly is installed by reversing the steps for removal. Note that depending on how far the LEDs protrude through the cahssis, the registration of the diffuser may not be quite as positive, but it has not been a problem in my experience.
+The graticule lamp assembly is installed by reversing the steps for removal. Note that depending on how far the LEDs protrude through the chassis, the registration of the diffuser may not be quite as positive, but it has not been a problem in my experience.
 
-Fell free to test at this point, if you are experienced enough to operate the scope with the side cover removed. Simply plug the PCB into the ribbon cable while ensuring that the PCB is not touching any parts of the scope.
+Fell free to test at this point, but only if you are experienced enough to operate the scope with the side cover removed. Simply plug the ribbon cable into the PCB (pay close attention to orientation) while ensuring that the PCB is not touching any parts of the scope.
 
 ![test setup](images/IMG_0585.jpg)
 
 If none of the LEDs light, try reversing the 2-pin connector between the graticule lamp assembly and the calibrator board.
 
-If one or more, but not all, of the LEDs light, then you have a short to chassis in the lamp assembly.
+If one or more, but not all, of the LEDs light, then you have a short to chassisground at the lamp assembly.
 
 You should be able to vary the LED brightness using the normal front panel control and the diffuser should spread the light fairly evenly across the face of the CRT.
 
 ### Mounting new PCB in a suitable location
-You are free to mount the PCB wherever you can find a suitable stable mechanical mounting point that the ribbon cable will reach. I ended up carefully drilling a suitable hole for a machine screw in the side wall of the transformer/rectifier assembly. I was careful to remove all swarf immediately after drilling the hole with a vacuum and a brush. After struggling to hold a nut in place with the board in place, I resorted to installing a threaded bushing on the PCB.
+You are free to mount the PCB wherever you can find a suitable stable mechanical mounting point that the ribbon cable will reach. I ended up carefully drilling a suitable hole for a machine screw in the left side wall of the transformer/rectifier assembly. I was careful to remove all swarf immediately after drilling the hole with a vacuum and a brush. After struggling to hold a nut in place with the board in place, I resorted to installing a threaded bushing on the PCB.
 
 ![bushing 1](images/IMG_0587.jpg)
 
@@ -84,7 +84,7 @@ You are free to mount the PCB wherever you can find a suitable stable mechanical
 
 I recommend mounting the PCB so that if the mounting bolt works loose and the board rotates, it is unable to rotate far enough to short pins to the chassis.
 
-I also applied some additional kaptan tape to the inside of the side cover, to reduce the chance of shorts if the side cover was pressed at just the wrong place.
+I also applied some additional kapton tape to the inside of the side cover, to reduce the chance of shorts if the side cover was pressed at just the wrong place.
 
 ![side cover kapton](images/IMG_0589.jpg)
 
