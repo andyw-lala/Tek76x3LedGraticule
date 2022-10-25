@@ -69,7 +69,7 @@ Fell free to test at this point, but only if you are experienced enough to opera
 
 If none of the LEDs light, try reversing the 2-pin connector between the graticule lamp assembly and the calibrator board.
 
-If one or more, but not all, of the LEDs light, then you have a short to chassisground at the lamp assembly.
+If one or more, but not all, of the LEDs light, then you have a short to chassis ground at the lamp assembly.
 
 You should be able to vary the LED brightness using the normal front panel control and the diffuser should spread the light fairly evenly across the face of the CRT.
 
