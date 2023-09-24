@@ -63,7 +63,7 @@ Note that the outside conductor of the lamp sockets can, and most likely will, b
 ### Reinstallation of graticule lamp assembly
 The graticule lamp assembly is installed by reversing the steps for removal. Note that depending on how far the LEDs protrude through the chassis, the registration of the diffuser may not be quite as positive, but it has not been a problem in my experience.
 
-Fell free to test at this point, but only if you are experienced enough to operate the scope with the side cover removed. Simply plug the ribbon cable into the PCB (pay close attention to orientation) while ensuring that the PCB is not touching any parts of the scope.
+Feel free to test at this point, but only if you are experienced enough to operate the scope with the side cover removed. Simply plug the ribbon cable into the PCB (pay close attention to orientation) while ensuring that the PCB is not touching any parts of the scope.
 
 ![test setup](images/IMG_0585.jpg)
 
